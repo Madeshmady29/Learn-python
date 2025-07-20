@@ -7,7 +7,7 @@ for key, value in {'word': '', 'clue': '', 'guessed': False, 'guesss': '', 'atte
 
 with st.expander("Player 1: set the word", expanded=True):
     with st.form("setup_form"):
-        word_input = st.test_input("Enter secret word", type = "password")
+        word_input = st.text_input("Enter secret word", type = "password")
         clue_input = st.text_input("Enter a clue for the word")
         submitted = st.form_submit_button("Set Word")
 
