@@ -44,7 +44,9 @@ if st.session_state.word:
         st.markdown("### Previous Guesses: ")
         st.write(st.session_state.history)
 
-    if st.button("Reset Game"):
-        for key in list(st.session_state.keys()):
+if st.button("Reset Game"):
+    keys_to_reset = ["word", "clue", "guessed", "guess", "attempts"]
+    for key in keys_to_reset:
+        if key in st.session_state:
             del st.session_state[key]
-        st.experimental_rerun()
+    st.rerun()
