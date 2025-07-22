@@ -5,6 +5,7 @@ st.title("2-PLAYER WORD GUESS CHALLENGE")
 for key, value in {'word': '', 'clue': '', 'guessed': False, 'guesss': '', 'attempts': 0, 'history': [], 'setup_done': False}.items():
     st.session_state.setdefault(key, value)
 
+#player 1 sets the word and clue
 if not st.session_state.setup_done:
     with st.expander("Player 1: set the word", expanded=True):
         with st.form("setup_form"):
@@ -21,6 +22,7 @@ if not st.session_state.setup_done:
                 st.success("Word & clue set! Player 2 can guess now!")
                 st.stop()
 
+#player 2 guesses the word
 if st.session_state.setup_done:
     st.markdown("### Player 2: Guess the word!")
     st.info(f"Clue: {st.session_state.clue}")
