@@ -5,19 +5,20 @@ st.title("2-PLAYER WORD GUESS CHALLENGE")
 for key, value in {'word': '', 'clue': '', 'guessed': False, 'guesss': '', 'attempts': 0, 'history': []}.items():
     st.session_state.setdefault(key, value)
 
-with st.expander("Player 1: set the word", expanded=True):
-    with st.form("setup_form"):
-        word_input = st.text_input("Enter secret word", type = "password")
-        clue_input = st.text_input("Enter a clue for the word")
-        submitted = st.form_submit_button("Set Word")
+if not st.session_state.word:
+    with st.expander("Player 1: set the word", expanded=True):
+        with st.form("setup_form"):
+            word_input = st.text_input("Enter secret word", type = "password")
+            clue_input = st.text_input("Enter a clue for the word")
+            submitted = st.form_submit_button("Set Word")
 
-        if submitted:
-            st.session_state.word = word_input.lower().strip()
-            st.session_state.clue = clue_input
-            st.session_state.guessed = False
-            st.session_state.attempts = 0
-            st.session_state.history = []
-            st.success("Word & clue set! Player 2 can guess now!")
+            if submitted and word_input:
+                st.session_state.word = word_input.lower().strip()
+                st.session_state.clue = clue_input
+                st.session_state.guessed = False
+                st.session_state.attempts = 0
+                st.session_state.history = []
+                st.success("Word & clue set! Player 2 can guess now!")
 
 if st.session_state.word:
     st.markdown("### Player 2: Guess the word!")
@@ -45,7 +46,7 @@ if st.session_state.word:
         st.write(st.session_state.history)
 
 if st.button("Reset Game"):
-    keys_to_reset = ["word", "clue", "guessed", "guess", "attempts"]
+    keys_to_reset = ["word", "clue", "guessed", "guess", "attempts", "history"]
     for key in keys_to_reset:
         if key in st.session_state:
             del st.session_state[key]
