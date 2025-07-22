@@ -12,7 +12,7 @@ if not st.session_state.word:
             clue_input = st.text_input("Enter a clue for the word")
             submitted = st.form_submit_button("Set Word")
 
-            if submitted and word_input:
+            if submitted:
                 st.session_state.word = word_input.lower().strip()
                 st.session_state.clue = clue_input
                 st.session_state.guessed = False
