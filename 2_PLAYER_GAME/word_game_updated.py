@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Word Game Guess", page_icon=":game_die:", layout = "centered")
+st.set_page_config(page_title="Word Game Guess", page_icon="🎲", layout = "centered")
 st.title("2-PLAYER WORD GUESS CHALLENGE")
 for key, value in {'word': '', 'clue': '', 'guessed': False, 'guesss': '', 'attempts': 0, 'history': [], 'setup_done': False}.items():
     st.session_state.setdefault(key, value)
@@ -9,6 +9,7 @@ for key, value in {'word': '', 'clue': '', 'guessed': False, 'guesss': '', 'atte
 if not st.session_state.setup_done:
     with st.expander("Player 1: set the word", expanded=True):
         with st.form("setup_form"):
+            st.subheader("Playar 1: Set the secret word and a clue")
             word_input = st.text_input("Enter secret word", type = "password")
             clue_input = st.text_input("Enter a clue for the word")
             submitted = st.form_submit_button("Set Word")
@@ -20,11 +21,13 @@ if not st.session_state.setup_done:
                 st.session_state.attempts = 0
                 st.session_state.history = []
                 st.success("Word & clue set! Player 2 can guess now!")
+                #st.session_state.setup_done = True
                 #st.stop()
 
 #player 2 guesses the word
 if st.session_state.setup_done:
-    st.markdown("### Player 2: Guess the word!")
+    st.divider()
+    st.subheader("### Player 2: Guess the word!")
     st.info(f"Clue: {st.session_state.clue}")
     st.write(f"The word has **{len(st.session_state.word)} letters**.")
     
