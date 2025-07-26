@@ -20,7 +20,7 @@ if not st.session_state.setup_done:
                 st.session_state.attempts = 0
                 st.session_state.history = []
                 st.success("Word & clue set! Player 2 can guess now!")
-                st.stop()
+                #st.stop()
 
 #player 2 guesses the word
 if st.session_state.setup_done:
